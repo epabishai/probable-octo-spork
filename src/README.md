@@ -50,3 +50,22 @@ The application uses a simple data model with meaningful identifiers:
    - Grade level
 
 All data is stored in memory, which means data will be reset when the server restarts.
+
+## Testing
+
+From the repository root, activate your virtual environment and run:
+
+```bash
+python -m pip install -r requirements.txt
+python -m pytest tests/ -v
+```
+
+To run a focused regression test:
+
+```bash
+python -m pytest tests/test_app.py -k duplicate -v
+```
+
+Backend tests use pytest and FastAPI's TestClient, with Arrange-Act-Assert
+sections in each test. Fixtures provide fresh activity data for every test and
+restore the original data afterward. No running Uvicorn server is required.
